@@ -1,11 +1,9 @@
-package com.upskillwithsuraj.razorpay.payment;
+package com.upskillwithsuraj.razorpay.payment.entity;
 
 import com.upskillwithsuraj.razorpay.comman.entity.Money;
 import com.upskillwithsuraj.razorpay.comman.enums.OrderStatus;
-import com.upskillwithsuraj.razorpay.merchant.entity.Merchant;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.sql.ast.tree.expression.JsonTableColumnDefinition;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;

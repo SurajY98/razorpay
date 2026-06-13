@@ -1,4 +1,4 @@
-package com.upskillwithsuraj.razorpay.payment;
+package com.upskillwithsuraj.razorpay.payment.entity;
 
 
 import com.upskillwithsuraj.razorpay.comman.entity.Money;
