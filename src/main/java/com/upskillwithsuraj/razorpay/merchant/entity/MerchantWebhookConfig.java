@@ -16,7 +16,16 @@ public class MerchantWebhookConfig {
     @JoinColumn(name = "merchant_id", nullable = false)
     private Merchant merchant;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 500)
     private String targetUrl;
+
+    @Column(length = 255)
+    private String webHookSecretHash;
+
+    @Column(nullable = false)
+    private Boolean enabled = true;
+
+    @Column(length = 255)
+    private String eventType;
 
 }

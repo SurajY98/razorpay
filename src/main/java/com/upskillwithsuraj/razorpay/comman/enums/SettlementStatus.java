@@ -1,8 +1,7 @@
 package com.upskillwithsuraj.razorpay.comman.enums;
 
-public enum RefundStatus {
-    PENDING,
-    PROCESSING,
+public enum SettlementStatus {
+    INITIATED,
     PROCESSED,
     FAILED
 }
