@@ -1,8 +1,6 @@
 package com.upskillwithsuraj.razorpay.operations.entity;
 
 import jakarta.persistence.Embeddable;
-import org.springframework.objenesis.instantiator.util.UnsafeUtils;
-
 import java.util.UUID;
 
 @Embeddable
