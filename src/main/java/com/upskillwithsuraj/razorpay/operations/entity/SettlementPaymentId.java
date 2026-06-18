@@ -1,9 +1,14 @@
 package com.upskillwithsuraj.razorpay.operations.entity;
 
 import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.util.UUID;
 
 @Embeddable
+@NoArgsConstructor
+@AllArgsConstructor
 public class SettlementPaymentId {
 
     private UUID settlementId;
