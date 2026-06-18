@@ -19,7 +19,7 @@ public record MerchantRequestSignUp (
     @Size(min = 8, message = "Password should be at leat 8 characters long")
     String password,
 
-    @Size(min = 50, message = "Business name should be at leat 50 characters long")
+    @Size(min = 10, message = "Business name should be at leat 10 characters long")
     String businessName,
 
     BusinessType businessType
