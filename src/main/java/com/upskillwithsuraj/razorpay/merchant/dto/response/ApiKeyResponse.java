@@ -2,12 +2,15 @@ package com.upskillwithsuraj.razorpay.merchant.dto.response;
 
 import com.upskillwithsuraj.razorpay.comman.enums.Environment;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-public record ApiKeyCreateResponse(
+public record ApiKeyResponse (
         UUID id,
         String keyId,
-        String keySecret,
-        Environment environment
+        Environment environment,
+        boolean enabled,
+        LocalDateTime lastUsedAt,
+        LocalDateTime createdAt
 ){
 }
