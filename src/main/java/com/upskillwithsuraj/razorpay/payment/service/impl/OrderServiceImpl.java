@@ -1,6 +1,9 @@
 package com.upskillwithsuraj.razorpay.payment.service.impl;
 
+import com.upskillwithsuraj.razorpay.comman.enums.OrderStatus;
+import com.upskillwithsuraj.razorpay.comman.exception.BusinessRuleViolationException;
 import com.upskillwithsuraj.razorpay.comman.exception.DuplicateResourceException;
+import com.upskillwithsuraj.razorpay.comman.exception.ResourceNotFoundException;
 import com.upskillwithsuraj.razorpay.payment.dto.request.CreateOrderRequest;
 import com.upskillwithsuraj.razorpay.payment.dto.response.CreateOrderResponse;
 import com.upskillwithsuraj.razorpay.payment.dto.response.PaymentResponse;
@@ -53,12 +56,45 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public CreateOrderResponse getById(UUID merchantId, UUID orderId) {
-        return null;
+        OrderRecord order = orderRepository.findByIdAndMerchantId(orderId, merchantId).
+                orElseThrow(() -> new ResourceNotFoundException("Order " orderId));
+
+        return new CreateOrderResponse(
+                order.getId(),
+                order.getMerchantId(),
+                order.getReceipt(),
+                order.getMoney(),
+                order.getStatus(),
+                order.getAttempts(),
+                order.getNotes(),
+                null,
+                order.getExpireAt()
+        );
     }
 
     @Override
     public CreateOrderResponse cancel(UUID merchantId, UUID orderId) {
-        return null;
+        OrderRecord order = orderRepository.findByIdAndMerchantId(orderId, merchantId).
+                orElseThrow(() -> new ResourceNotFoundException("Order " orderId));
+
+        if(order.getOrderStatus() == OrderStatus.CANCELLED || order.getOrderStatus() == OrderStatus.PAID){
+            throw new BusinessRuleViolationException("ORDER_CANNOT_CANCEL", "Can't cancel order with satatus: " + order.getOrderStatus().name());
+        }
+
+        order.setOrderStatus(OrderStatus.CANCELLED);
+        orderRepository.save(order);
+
+        return new CreateOrderResponse(
+                order.getId(),
+                order.getMerchantId(),
+                order.getReceipt(),
+                order.getMoney(),
+                order.getStatus(),
+                order.getAttempts(),
+                order.getNotes(),
+                null,
+                order.getExpireAt()
+        );
     }
 
     @Override
