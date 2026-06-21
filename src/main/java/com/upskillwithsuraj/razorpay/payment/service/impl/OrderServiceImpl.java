@@ -3,6 +3,7 @@ package com.upskillwithsuraj.razorpay.payment.service.impl;
 import com.upskillwithsuraj.razorpay.comman.exception.DuplicateResourceException;
 import com.upskillwithsuraj.razorpay.payment.dto.request.CreateOrderRequest;
 import com.upskillwithsuraj.razorpay.payment.dto.response.CreateOrderResponse;
+import com.upskillwithsuraj.razorpay.payment.dto.response.PaymentResponse;
 import com.upskillwithsuraj.razorpay.payment.entity.OrderRecord;
 import com.upskillwithsuraj.razorpay.payment.respository.OrderRepository;
 import com.upskillwithsuraj.razorpay.payment.service.OrderService;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -47,6 +49,21 @@ public class OrderServiceImpl implements OrderService {
                 record.getNotes(),
                 null,
                 record.getExpireAt());
+    }
+
+    @Override
+    public CreateOrderResponse getById(UUID merchantId, UUID orderId) {
+        return null;
+    }
+
+    @Override
+    public CreateOrderResponse cancel(UUID merchantId, UUID orderId) {
+        return null;
+    }
+
+    @Override
+    public List<PaymentResponse> listPayment(UUID merchantId, UUID orderId) {
+        return List.of();
     }
 
 
