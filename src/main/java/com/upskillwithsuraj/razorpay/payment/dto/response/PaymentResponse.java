@@ -1,23 +1,27 @@
 package com.upskillwithsuraj.razorpay.payment.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.upskillwithsuraj.razorpay.comman.entity.Money;
 import com.upskillwithsuraj.razorpay.comman.enums.PaymentMethod;
 import com.upskillwithsuraj.razorpay.comman.enums.PaymentStatus;
 
-@JsonInclude(JsonInclude.Include,NON_NULL)
+import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.UUID;
+
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
+@JsonInclude(NON_NULL)
 public record PaymentResponse(
         UUID id,
-        UUID orderId,
+        UUID orderRecordId,
         UUID merchantId,
-        MoneyDto amount,
+        Money amount,
         PaymentStatus status,
         PaymentMethod method,
         Map<String, Object> methodDetails,
-        String cardLastFour,
-        String CardBrand,
-        String bankReference,
         String errorCode,
         String errorDescription,
-        Long refundedAmountPaise,
         LocalDateTime capturedAt,
         LocalDateTime createdAt
 

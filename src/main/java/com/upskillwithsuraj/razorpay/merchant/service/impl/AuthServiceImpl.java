@@ -7,6 +7,7 @@ import com.upskillwithsuraj.razorpay.merchant.dto.request.MerchantRequestSignUp;
 import com.upskillwithsuraj.razorpay.merchant.dto.response.MerchantResponse;
 import com.upskillwithsuraj.razorpay.merchant.entity.AppUser;
 import com.upskillwithsuraj.razorpay.merchant.entity.Merchant;
+import com.upskillwithsuraj.razorpay.merchant.mapper.MerchantMapper;
 import com.upskillwithsuraj.razorpay.merchant.respository.AppUserRepository;
 import com.upskillwithsuraj.razorpay.merchant.respository.MerchantRepository;
 import com.upskillwithsuraj.razorpay.merchant.service.AuthService;
@@ -20,6 +21,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final MerchantRepository merchantRepository;
     private  final AppUserRepository appUserRepository;
+    private final MerchantMapper merchantMapper;
 
     @Override
     @Transactional
@@ -28,14 +30,8 @@ public class AuthServiceImpl implements AuthService {
             throw new DuplicateResourceException("DUPLICATE_MERCHANT_EMAIL","Merchant with email is already present with "+request.email());
         }
 
-        Merchant merchant = Merchant.builder().
-                businessName(request.businessName()).
-                businessType(request.businessType()).
-                name(request.name()).
-                email(request.email()).
-                status(MerchantStatus.PENDING_KYC).
-                build();
-
+        Merchant merchant = merchantMapper.toEntityFromSignUpRequest(request);
+        merchant.setStatus(MerchantStatus.PENDING_KYC);
         merchant = merchantRepository.save(merchant);
 
         AppUser appUser = AppUser.builder()
@@ -46,7 +42,6 @@ public class AuthServiceImpl implements AuthService {
                 .build();
 
         appUserRepository.save(appUser);
-        return new MerchantResponse(merchant.getId(), merchant.getName(), merchant.getName(), merchant.getBusinessName(),
-                merchant.getBusinessType(), merchant.getStatus());
+        return merchantMapper.toResponse(merchant);
     }
 }

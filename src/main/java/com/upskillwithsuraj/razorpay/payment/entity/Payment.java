@@ -28,7 +28,7 @@ public class Payment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
-    private OrderRecord orderRecord;
+    private OrderRecord order;
 
     @Column(nullable = false)
     private UUID merchantId;
@@ -46,7 +46,7 @@ public class Payment {
     @Column(nullable = false)
     private PaymentMethod method;
 
-    @JdbcTypeCode((SqlTypes.JSON))
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "method_details",columnDefinition = "jsonb")
     private Map<String, Object> methodDetails;
 

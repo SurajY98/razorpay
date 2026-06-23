@@ -7,6 +7,7 @@ import com.upskillwithsuraj.razorpay.merchant.dto.response.ApiKeyCreateResponse;
 import com.upskillwithsuraj.razorpay.merchant.dto.response.ApiKeyResponse;
 import com.upskillwithsuraj.razorpay.merchant.entity.ApiKey;
 import com.upskillwithsuraj.razorpay.merchant.entity.Merchant;
+import com.upskillwithsuraj.razorpay.merchant.mapper.ApiKeyMapper;
 import com.upskillwithsuraj.razorpay.merchant.respository.ApiKeyRepository;
 import com.upskillwithsuraj.razorpay.merchant.respository.MerchantRepository;
 import com.upskillwithsuraj.razorpay.merchant.service.ApiKeyService;
@@ -27,6 +28,7 @@ public class ApiKeyServiceImpl implements ApiKeyService {
 
     private final MerchantRepository merchantRepository;
     private final ApiKeyRepository apiKeyRepository;
+    private final ApiKeyMapper apiKeyMapper;
 
     @Override
     @Transactional
@@ -49,15 +51,16 @@ public class ApiKeyServiceImpl implements ApiKeyService {
 
     @Override
     public List<ApiKeyResponse> listByMerchant(UUID merchantId) {
-        return apiKeyRepository.findByMerchant_id(merchantId).stream()
-                .map(apiKey ->
-                        new ApiKeyResponse(
-                                apiKey.getId(),
-                                apiKey.getKeyId(),
-                                apiKey.getEnvironment(),
-                                apiKey.isEnabled(),
-                                apiKey.getLastUsedAt(),
-                                null)).toList();
+        return apiKeyMapper.toResponseList(apiKeyRepository.findByMerchant_id(merchantId));
+//        return apiKeyRepository.findByMerchant_id(merchantId).stream()
+//                .map(apiKey ->
+//                        new ApiKeyResponse(
+//                                apiKey.getId(),
+//                                apiKey.getKeyId(),
+//                                apiKey.getEnvironment(),
+//                                apiKey.isEnabled(),
+//                                apiKey.getLastUsedAt(),
+//                                null)).toList();
     }
 
     @Override

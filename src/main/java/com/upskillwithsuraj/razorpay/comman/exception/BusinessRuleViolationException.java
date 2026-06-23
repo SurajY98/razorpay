@@ -1,5 +1,7 @@
 package com.upskillwithsuraj.razorpay.comman.exception;
 
+import lombok.Getter;
+
 @Getter
 public class BusinessRuleViolationException extends RuntimeException {
 
