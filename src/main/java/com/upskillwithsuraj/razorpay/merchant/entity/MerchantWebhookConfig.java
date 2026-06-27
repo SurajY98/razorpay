@@ -1,11 +1,14 @@
 package com.upskillwithsuraj.razorpay.merchant.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.processing.Find;
 
 import java.util.UUID;
 
 @Entity
-@Table(name = "merchant_webhook_config")
+@Table(name = "merchant_webhook_config", indexes = {
+        @Index(name = "idx_webhook_merchant_id", columnList = "merchant_id, enabled")
+})
 public class MerchantWebhookConfig {
 
     @Id
