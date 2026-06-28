@@ -1,6 +1,7 @@
 package com.upskillwithsuraj.razorpay.merchant.entity;
 
 
+import com.upskillwithsuraj.razorpay.comman.entity.BaseEntity;
 import com.upskillwithsuraj.razorpay.comman.enums.Environment;
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,7 +20,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Setter
 @Getter
-public class ApiKey {
+public class ApiKey extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

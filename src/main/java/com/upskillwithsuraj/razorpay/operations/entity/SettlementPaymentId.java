@@ -1,5 +1,6 @@
 package com.upskillwithsuraj.razorpay.operations.entity;
 
+import com.upskillwithsuraj.razorpay.comman.entity.BaseEntity;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

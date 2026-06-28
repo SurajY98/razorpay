@@ -1,5 +1,6 @@
 package com.upskillwithsuraj.razorpay.payment.entity;
 
+import com.upskillwithsuraj.razorpay.comman.entity.BaseEntity;
 import com.upskillwithsuraj.razorpay.comman.entity.Money;
 import com.upskillwithsuraj.razorpay.comman.enums.RefundStatus;
 import com.upskillwithsuraj.razorpay.merchant.entity.Merchant;
@@ -19,7 +20,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Refund {
+public class Refund extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

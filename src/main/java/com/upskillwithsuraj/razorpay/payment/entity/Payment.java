@@ -1,6 +1,7 @@
 package com.upskillwithsuraj.razorpay.payment.entity;
 
 
+import com.upskillwithsuraj.razorpay.comman.entity.BaseEntity;
 import com.upskillwithsuraj.razorpay.comman.entity.Money;
 import com.upskillwithsuraj.razorpay.comman.enums.PaymentMethod;
 import com.upskillwithsuraj.razorpay.comman.enums.PaymentStatus;
@@ -23,7 +24,7 @@ import java.util.UUID;
         @Index(name = "idx_payment_order_id", columnList = "order_id"),
         @Index(name = "idx_payment_merchant_id", columnList = "merchant_id")
 })
-public class Payment {
+public class Payment extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

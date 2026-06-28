@@ -1,5 +1,6 @@
 package com.upskillwithsuraj.razorpay.payment.entity;
 
+import com.upskillwithsuraj.razorpay.comman.entity.BaseEntity;
 import com.upskillwithsuraj.razorpay.comman.entity.Money;
 import com.upskillwithsuraj.razorpay.comman.enums.OrderStatus;
 import jakarta.persistence.*;
@@ -21,7 +22,7 @@ import java.util.UUID;
         @Index(name = "idx_order_id_merchant_id", columnList = "id, merchant_id"),
         @Index(name = "idx_order_merchant_id", columnList = "merchant_id")
 })
-public class OrderRecord {
+public class OrderRecord extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
