@@ -8,6 +8,8 @@ import com.upskillwithsuraj.razorpay.payment.dto.request.PaymentInitRequest;
 import com.upskillwithsuraj.razorpay.payment.dto.response.PaymentResponse;
 import com.upskillwithsuraj.razorpay.payment.entity.OrderRecord;
 import com.upskillwithsuraj.razorpay.payment.entity.Payment;
+import com.upskillwithsuraj.razorpay.payment.gateway.PaymentGatewayRouter;
+import com.upskillwithsuraj.razorpay.payment.gateway.dto.PaymentRequest;
 import com.upskillwithsuraj.razorpay.payment.respository.OrderRepository;
 import com.upskillwithsuraj.razorpay.payment.respository.PaymentRepository;
 import com.upskillwithsuraj.razorpay.payment.service.PaymentService;
@@ -24,6 +26,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     private final OrderRepository orderRepository;
     private final PaymentRepository paymentRepository;
+    private final PaymentGatewayRouter paymentGatewayRouter;
 
     @Override
     public PaymentResponse initiate(UUID merchantId, PaymentInitRequest request) {
@@ -49,6 +52,13 @@ public class PaymentServiceImpl implements PaymentService {
                 .build();
 
         payment =  paymentRepository.save(payment);
+
+        PaymentRequest paymentRequest = new PaymentRequest(payment.getId(),
+                merchantId, request.orderId(),
+                order.getAmount(),request.method(),
+                request.methodDetails());
+
+        paymentGatewayRouter.initiate(paymentRequest);
         return null;
     }
 }
