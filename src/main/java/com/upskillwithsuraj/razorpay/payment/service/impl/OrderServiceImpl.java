@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructorgit
+@RequiredArgsConstructor
 @Slf4j
 public class OrderServiceImpl implements OrderService {
 
