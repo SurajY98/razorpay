@@ -16,6 +16,7 @@ import com.upskillwithsuraj.razorpay.payment.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -29,6 +30,7 @@ public class PaymentServiceImpl implements PaymentService {
     private final PaymentGatewayRouter paymentGatewayRouter;
 
     @Override
+    @Transactional
     public PaymentResponse initiate(UUID merchantId, PaymentInitRequest request) {
 
         OrderRecord order = orderRepository.findByIdAndMerchantId(request.orderId(), merchantId).
