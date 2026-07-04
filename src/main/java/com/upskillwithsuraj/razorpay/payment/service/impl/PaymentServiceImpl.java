@@ -22,7 +22,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
+
 public class PaymentServiceImpl implements PaymentService {
 
     private final OrderRepository orderRepository;
