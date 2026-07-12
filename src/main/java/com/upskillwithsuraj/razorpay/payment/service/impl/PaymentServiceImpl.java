@@ -15,6 +15,8 @@ import java.util.UUID;
 public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentResponse initiate(UUID merchantId, PaymentInitRequest request) {
+
+
         return null;
     }
 }
