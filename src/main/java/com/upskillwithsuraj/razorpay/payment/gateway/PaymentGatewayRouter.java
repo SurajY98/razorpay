@@ -11,6 +11,5 @@ import org.springframework.stereotype.Component;
 public class PaymentGatewayRouter {
 
     public void initiate(PaymentRequest request){
-
     }
 }
