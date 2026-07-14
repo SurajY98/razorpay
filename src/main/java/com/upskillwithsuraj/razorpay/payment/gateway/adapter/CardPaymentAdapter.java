@@ -7,6 +7,5 @@ public class CardPaymentAdapter implements PaymentAdapter {
 
     @Override
     public void initiate(PaymentRequest request) {
-
     }
 }
