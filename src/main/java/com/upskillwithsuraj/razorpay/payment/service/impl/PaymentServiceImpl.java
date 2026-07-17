@@ -62,6 +62,5 @@ public class PaymentServiceImpl implements PaymentService {
 
         paymentGatewayRouter.initiate(paymentRequest);
         return null;
-
     }
 }
